@@ -1,0 +1,17 @@
+{
+  "name": "svelte-todo",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "devDependencies": {
+    "@sveltejs/vite-plugin-svelte": "^2.4.2",
+    "carbon-components-svelte": "^0.80.0",
+    "svelte": "^4.0.5",
+    "vite": "^4.4.5"
+  }
+}

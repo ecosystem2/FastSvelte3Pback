@@ -17,6 +17,7 @@
 </script>
 
 <div>
+    <br />
     {#if logContents}
         {#each logContents.split("#") as line}
             <p>{line}</p>

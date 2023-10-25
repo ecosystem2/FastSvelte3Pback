@@ -1,3 +1,5 @@
 validation_errors.log
 __pycache__/main.cpython-311.pyc
 *node_modules/*
+schemamodels/models/__pycache__/basematerialschema.cpython-311.pyc
+schemamodels/models/__pycache__/materialschema.cpython-311.pyc

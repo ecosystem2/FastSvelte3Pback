@@ -16,7 +16,7 @@
     });
 </script>
 
-<div>
+<div class="data-output">
     <br />
     {#if logContents}
         {#each logContents.split("#") as line}
@@ -26,3 +26,6 @@
         <p>No log contents available</p>
     {/if}
 </div>
+
+<style>
+</style>

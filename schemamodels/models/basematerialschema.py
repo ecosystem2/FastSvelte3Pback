@@ -6,10 +6,6 @@ from typing import Optional
 # Define a regular expression to match ISO 8601 date format "YYYY-MM-DD"
 iso8601_date_pattern = r"^\d{4}-\d{2}-\d{2}$"
 
-"""# Define the controlled list of valid items
-controlled_list = [
-    "bm-material-type-0001", "bm-material-type-0002", "bm-material-type-0003", "bm-material-type-0004"]
-"""
 # Load the CSV file as a controlled list
 controlled_list_df = pd.read_csv(
     'schemamodels\models\controlled_lists\list_of_lists_nov23.csv')
@@ -17,21 +13,23 @@ controlled_list_df = pd.read_csv(
 controlled_list = controlled_list_df['baseMaterialType'].tolist()
 
 # import column from pandera as pa.column
+# add missing columns - will print a return schema that indicates missing columns - with a value of NaN if no default is declared.
+# strict='filter' will drop columns not in the schema from the validation process
 schema = pa.DataFrameSchema(
     {
         "identifier": pa.Column(str),
         "baseMaterialName": pa.Column(str),
-        "baseMaterialType": pa.Column(pa.String, checks=pa.Check(lambda s: s.isin(controlled_list))),
-        "materialChemCID": pa.Column(int),
-        "externalIdentifierKeys": pa.Column(str),
-        "externalIdentifierValues": pa.Column(int),
-        "certification": pa.Column(bool),
-        "certificationClaims": pa.Column(str, nullable=True),
-        "manufacturer": pa.Column(str),
-        "manufacturedCountry": pa.Column(str),
+        "baseMaterialType": pa.Column(pa.String, checks=pa.Check(lambda s: s.isin(controlled_list)), required=False),
+        "materialChemCID": pa.Column(int, required=False),
+        "externalIdentifierKeys": pa.Column(str, required=False),
+        "externalIdentifierValues": pa.Column(int, required=False),
+        "certification": pa.Column(bool, required=False),
+        "certificationClaims": pa.Column(str, required=False),
+        "manufacturedCountry": pa.Column(str, required=False),
         "updateDate": pa.Column(pa.String, checks=pa.Check.str_matches(iso8601_date_pattern)),
     },
-    strict=True,
+    #   strict='filter',
+    #   add_missing_columns=True,
     coerce=True
 )
 

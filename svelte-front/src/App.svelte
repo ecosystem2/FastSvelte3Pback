@@ -48,8 +48,8 @@
   .contents {
     grid-area: contents;
     background: whitesmoke;
-    width: 100vh;
-    height: 100vh;
+    width: 100%;
+    height: 100%;
     display: flex;
     padding-left: 2%;
   }

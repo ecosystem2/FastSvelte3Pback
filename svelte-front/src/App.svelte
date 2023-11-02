@@ -12,7 +12,7 @@
 
 <div class="root">
   <div class="top-bar" />
-  <h3>documentation</h3>
+  <h4>documentation | links | logos</h4>
   <div class="side-bar">
     <DataInput />
   </div>

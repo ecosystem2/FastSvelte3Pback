@@ -11,8 +11,6 @@
 </script>
 
 <div class="root">
-  <div class="top-bar" />
-  <h4>documentation | links | logos</h4>
   <div class="side-bar">
     <DataInput />
   </div>
@@ -34,26 +32,24 @@
     width: 100vw;
     margin: 0;
     display: grid;
-    grid-template-areas:
-      "top  top"
-      "side contents";
+    grid-template-areas: "side contents";
     grid-template-rows: auto 1fr;
-    grid-template-columns: 1fr 3fr;
+    grid-template-columns: 1fr 2fr;
   }
 
   .side-bar {
     grid-area: side;
     background: grey;
     width: 100%;
-    height: 100%;
+    height: 100vh;
     display: flex;
     padding-left: 2%;
   }
   .contents {
     grid-area: contents;
     background: whitesmoke;
-    width: 100%;
-    height: 100%;
+    width: 100vh;
+    height: 100vh;
     display: flex;
     padding-left: 2%;
   }

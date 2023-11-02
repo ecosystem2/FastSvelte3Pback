@@ -67,35 +67,8 @@
                 value="http://localhost:8000/materials/"
             />
             Materials
+            <!-- Add more radio buttons for additional endpoints -->
         </label>
-        <br />
-        <label>
-            <input
-                type="radio"
-                bind:group={selectedEndpoint}
-                value="http://localhost:8000/materials/"
-            />
-            Components
-        </label>
-        <br />
-        <label>
-            <input
-                type="radio"
-                bind:group={selectedEndpoint}
-                value="http://localhost:8000/materials/"
-            />
-            Complete Packaging
-        </label>
-        <br />
-        <label>
-            <input
-                type="radio"
-                bind:group={selectedEndpoint}
-                value="http://localhost:8000/materials/"
-            />
-            Load
-        </label>
-        <!-- Add more radio buttons for additional endpoints -->
     </div>
     <br />
     <br />

@@ -1,20 +1,14 @@
 import pandera as pa
-import pandas as pd
 from pandera.typing import Series
 from typing import Optional
 
 # Define a regular expression to match ISO 8601 date format "YYYY-MM-DD"
 iso8601_date_pattern = r"^\d{4}-\d{2}-\d{2}$"
 
-"""# Define the controlled list of valid items
+# Define the controlled list of valid items
 controlled_list = [
-    "bm-material-type-0001", "bm-material-type-0002", "bm-material-type-0003", "bm-material-type-0004"]
-"""
-# Load the CSV file as a controlled list
-controlled_list_df = pd.read_csv(
-    'schemamodels\models\controlled_lists\list_of_lists_nov23.csv')
-# Replace 'column_name' with the actual column name in your CSV
-controlled_list = controlled_list_df['baseMaterialType'].tolist()
+    "bm-material-type-0001", "bm-material-type-0002", "bm-material-type-0003", "bm-material-type-0004", "bm-material-type-0005"]
+
 
 # import column from pandera as pa.column
 schema = pa.DataFrameSchema(

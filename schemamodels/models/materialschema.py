@@ -1,16 +1,20 @@
 import pandera as pa
+import pandas as pd
 from pandera.typing import Series
 from typing import Optional
 
 # Define a regular expression to match ISO 8601 date format "YYYY-MM-DD"
 iso8601_date_pattern = r"^\d{4}-\d{2}-\d{2}$"
 
-# Define the controlled list of valid items
-controlled_list = [
-    "bm-material-type-0001", "bm-material-type-0002", "bm-material-type-0003", "bm-material-type-0004", "bm-material-type-0005"]
-
+# Load the CSV file as a controlled list
+controlled_list_df = pd.read_csv(
+    'schemamodels\models\controlled_lists\list_of_lists_nov23.csv')
+# Replace 'column_name' with the actual column name in your CSV
+controlled_list = controlled_list_df['baseMaterialType'].tolist()
 
 # import column from pandera as pa.column
+# strict='filter' will drop columns not in the schema from the validation process
+# add missing columns - will print a return schema that indicates missing columns - with a value of NaN if no default is declared.
 schema = pa.DataFrameSchema(
     {
         "identifier": pa.Column(str),
@@ -25,12 +29,15 @@ schema = pa.DataFrameSchema(
         "manufacturedCountry": pa.Column(str),
         "updateDate": pa.Column(pa.String, checks=pa.Check.str_matches(iso8601_date_pattern)),
     },
-    strict=True,
+    #   strict='filter',
+    #   add_missing_columns=True,
     coerce=True
 )
 
-
+# lazy=true gives an overview of validation errors
 # Define a function to validate and log errors
+
+
 def validate_and_log_data(data):
     log_filename = 'validation_errors.log'
     with open(log_filename, 'w') as log_file:

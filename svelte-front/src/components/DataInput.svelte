@@ -69,6 +69,46 @@
             Materials
             <!-- Add more radio buttons for additional endpoints -->
         </label>
+        <label>
+            <input
+                type="radio"
+                bind:group={selectedEndpoint}
+                value="http://localhost:8000/components/"
+            />
+            Components
+        </label>
+        <label>
+            <input
+                type="radio"
+                bind:group={selectedEndpoint}
+                value="http://localhost:8000/completepackaging/"
+            />
+            Complete Packaging
+        </label>
+        <label>
+            <input
+                type="radio"
+                bind:group={selectedEndpoint}
+                value="http://localhost:8000/multipack/"
+            />
+            Multipack
+        </label>
+        <label>
+            <input
+                type="radio"
+                bind:group={selectedEndpoint}
+                value="http://localhost:8000/loadcatalogue/"
+            />
+            Load Catalogue
+        </label>
+        <label>
+            <input
+                type="radio"
+                bind:group={selectedEndpoint}
+                value="http://localhost:8000/load/"
+            />
+            Load
+        </label>
     </div>
     <br />
     <br />

@@ -1,7 +1,5 @@
 <script>
   // @ts-nocheck
-
-  import "carbon-components-svelte/css/white.css";
   import { onMount } from "svelte";
   import DataInput from "./components/DataInput.svelte";
   import DataResult from "./components/DataResult.svelte";
@@ -12,23 +10,42 @@
 </script>
 
 <main>
-  <h2>Open 3P Validator</h2>
-
-  <DataInput />
-  <DataResult />
+  <div class="root">
+    <div class="side-bar">
+      <DataInput />
+    </div>
+    <div class="contents">
+      <DataResult />
+    </div>
+  </div>
 </main>
 
 <style>
-  main {
-    text-align: center;
-    padding: 1em;
-    max-width: 240px;
-    margin: 0 auto;
+  :global(html),
+  :global(body) .root {
+    height: 100vh;
+    width: 100vw;
+    margin: 0;
+    display: grid;
+    grid-template-areas: "side contents";
+    grid-template-rows: auto 2fr;
+    grid-template-columns: 1fr 3fr;
   }
 
-  @media (min-width: 640px) {
-    main {
-      max-width: none;
-    }
+  .side-bar {
+    grid-area: side;
+    background: grey;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    padding-left: 2%;
+  }
+  .contents {
+    grid-area: contents;
+    background: whitesmoke;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    padding-left: 2%;
   }
 </style>

@@ -32,7 +32,7 @@
     };
 </script>
 
-<div>
+<div class="container">
     <a href="https://www.open3p.org/" target="_blank" rel="noreferrer">
         <img
             src="/src/assets/open3P_assets/Open3PColour.svg"
@@ -45,7 +45,7 @@
     <h3>The Open 3P validation tool is used to test if</h3>
     <h3>your data complies with the standard.</h3>
     <br />
-    <h3>Upload a .csv or .json file to test your data.</h3>
+    <h4>Upload a .csv or .json file to test your data.</h4>
     <br />
     <input type="file" on:change={handleFileInput} />
     <br />
@@ -59,7 +59,6 @@
             />
             Base Materials
         </label>
-        <br />
         <label>
             <input
                 type="radio"
@@ -121,9 +120,16 @@
 </div>
 
 <style>
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%; /* Adjust this according to your layout */
+    }
     .logo {
         height: 12em;
-        padding: 0.3em;
+        padding: 0.2em;
         will-change: filter;
         transition: filter 300ms;
     }
@@ -136,29 +142,39 @@
     h2 {
         color: #222222;
         font-size: 2rem;
+        font-family: Calibri;
+        align-content: center;
     }
     h3 {
         color: #222222;
         font-size: 0.8rem;
+        font-family: Arial;
     }
+
+    h4 {
+        color: #222222;
+        font-size: 0.8rem;
+        font-family: Arial;
+    }
+
     br {
-        line-height: 7;
+        line-height: 4;
     }
 
     label {
         display: block;
-        position: relative;
-        text-align: center;
+        color: #222222;
+        align-content: left;
+        font-family: Arial;
     }
     input {
         display: inline-block;
         color: #222222;
-        padding: 0.3em;
+        padding: 0.2em;
         height: 2em;
         font-size: 1rem;
         place-items: center;
-        justify-content: center;
-        margin: 0 auto;
+        font-family: Arial;
     }
     button {
         display: inline-block;
@@ -168,5 +184,6 @@
         place-items: center;
         justify-content: center;
         border: #222222;
+        font-family: Arial;
     }
 </style>

@@ -35,9 +35,6 @@
     background: grey;
     width: 100%;
     height: 100%;
-    display: flex;
-    padding-left: 2%;
-    place-items: center;
   }
   .contents {
     grid-area: contents;

@@ -1,4 +1,6 @@
 <script>
+    import App from "../App.svelte";
+
     let file = null;
     let selectedEndpoint = "";
 
@@ -42,10 +44,15 @@
     </a>
     <h2>Open 3P Validator</h2>
     <br />
-    <h3>The Open 3P validation tool is used to test if</h3>
-    <h3>your data complies with the standard.</h3>
-    <br />
-    <h4>Upload a .csv or .json file to test your data.</h4>
+
+    <p>
+        The Open 3P validation tool is used to test if your data complies with
+        the standard.
+    </p>
+    <p>
+        Upload a .csv or .json file then select a schema level below to test
+        your data.
+    </p>
     <br />
     <input type="file" on:change={handleFileInput} />
     <br />
@@ -111,12 +118,47 @@
     </div>
     <br />
     <br />
-    <button on:click={sendCSV}>Send CSV</button>
+    <button on:click={sendCSV}>Send</button>
     <br />
     <br />
+    <h3>Disclaimers:</h3>
+    <p1>
+        This tool is provided freely as part of the distribution of the Open 3P
+        standard for packaging data.
+    </p1>
     <br />
-    <h3>Disclaimers...</h3>
-    <h3>Files are not stored..</h3>
+    <p1> You can view the documentation of the standard here. </p1>
+    <br />
+    <p1>
+        The website also provides additional learning resources and access to
+        the Open 3P help desk service.
+    </p1>
+    <br />
+    <p1>
+        This tool does not store files uploaded to it. Instead it provides
+        access to a library that tests your data against the schema for Open 3P.
+    </p1>
+    <br />
+    <p1>
+        The validator looks for correctly labelled column headings that are
+        required and recommended within the standard guidelines.
+    </p1>
+    <br />
+    <p1>
+        As such you are able to include columns not in the schema for use within
+        your organisation.
+    </p1>
+    <br />
+    <p1>
+        This service can also be accessed as an API via the following portal:
+    </p1>
+    <br />
+    <p1>
+        Access to this tool is found under the Apache License 2.0. The source
+        code can be found here.
+    </p1>
+    <br />
+    <p1> This tool was developed by Ecosystem2 for Open Data Manchester. </p1>
 </div>
 
 <style>
@@ -128,8 +170,8 @@
         height: 100%; /* Adjust this according to your layout */
     }
     .logo {
-        height: 12em;
-        padding: 0.2em;
+        height: 12.4em;
+        padding: 0.1em;
         will-change: filter;
         transition: filter 300ms;
     }
@@ -157,23 +199,48 @@
         font-family: Arial;
     }
 
+    p {
+        color: #222222;
+        font-family: Arial;
+        width: 80%;
+        text-justify: center;
+    }
+
+    p1 {
+        color: #222222;
+        font-family: Arial;
+        font-size: 0.8rem;
+        width: 80%;
+        text-justify: center;
+    }
+
     br {
-        line-height: 4;
+        line-height: 3;
+    }
+    input[type="file"] {
+        display: inline-block;
+        color: #222222;
+        border: 1px solid #ccc;
+        padding: 6px 12px;
+        font-size: 1rem;
+        cursor: pointer;
+        font-family: Arial;
+    }
+
+    input[type="radio"] {
+        display: inline-block;
+        color: #222222;
+        padding: 0.2em;
+        height: 1.4em;
+        font-size: 1rem;
+        place-items: left;
+        font-family: Arial;
     }
 
     label {
         display: block;
         color: #222222;
         align-content: left;
-        font-family: Arial;
-    }
-    input {
-        display: inline-block;
-        color: #222222;
-        padding: 0.2em;
-        height: 2em;
-        font-size: 1rem;
-        place-items: center;
         font-family: Arial;
     }
     button {

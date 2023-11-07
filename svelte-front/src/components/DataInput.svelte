@@ -1,4 +1,6 @@
 <script>
+    import App from "../App.svelte";
+
     let file = null;
     let selectedEndpoint = "";
 
@@ -32,7 +34,7 @@
     };
 </script>
 
-<div>
+<div class="container">
     <a href="https://www.open3p.org/" target="_blank" rel="noreferrer">
         <img
             src="/src/assets/open3P_assets/Open3PColour.svg"
@@ -42,15 +44,20 @@
     </a>
     <h2>Open 3P Validator</h2>
     <br />
-    <h3>The Open 3P validation tool is used to test if</h3>
-    <h3>your data complies with the standard.</h3>
-    <br />
-    <h3>Upload a .csv or .json file to test your data.</h3>
+
+    <p>
+        The Open 3P validation tool is used to test if your data complies with
+        the standard.
+    </p>
+    <p>
+        Upload a .csv or .json file then select a schema level below to test
+        your data.
+    </p>
     <br />
     <input type="file" on:change={handleFileInput} />
     <br />
     <br />
-    <div>
+    <div class="settings">
         <label>
             <input
                 type="radio"
@@ -59,7 +66,6 @@
             />
             Base Materials
         </label>
-        <br />
         <label>
             <input
                 type="radio"
@@ -112,18 +118,75 @@
     </div>
     <br />
     <br />
-    <button on:click={sendCSV}>Send CSV</button>
+    <button on:click={sendCSV}>Send</button>
     <br />
     <br />
+    <h3>Guidance:</h3>
+    <p1>
+        This tool is provided freely as part of the distribution of the Open 3P
+        standard for packaging data.
+    </p1>
     <br />
-    <h3>Disclaimers...</h3>
-    <h3>Files are not stored..</h3>
+    <p1>
+        You can view the documentation of the standard <a
+            href="https://standard.open3p.org/2.0/">here</a
+        >.
+    </p1>
+    <br />
+    <p1>
+        The <a href="https://www.open3p.org/">website</a> also provides additional
+        learning resources and access to the Open 3P help desk service.
+    </p1>
+    <br />
+    <p1>
+        This tool does not store files uploaded to it. Instead it provides
+        access to a library that tests your data against the schema for Open 3P.
+    </p1>
+    <br />
+    <p1>
+        The validator looks for correctly labelled column headings that are
+        required and recommended within the standard guidelines.
+    </p1>
+    <br />
+    <p1>
+        As such you are able to include columns not in the schema for use within
+        your organisation.
+    </p1>
+    <br />
+    <p1>
+        This service can also be accessed as an API via the following portal:
+        LINK to API documentation.
+    </p1>
+    <br />
+    <p1>
+        Access to this tool is found under the Apache License 2.0. The source
+        code can be found here LINK to GiT.
+    </p1>
+    <br />
 </div>
 
 <style>
+    div.settings {
+        display: grid;
+        grid-template-columns: max-content max-content;
+        grid-gap: 5px;
+    }
+    div.settings label {
+        text-align: left;
+    }
+    div.settings label:after {
+        content: ":";
+    }
+    .container {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100%; /* Adjust this according to your layout */
+    }
     .logo {
-        height: 12em;
-        padding: 0.3em;
+        height: 12.4em;
+        padding: 0.1em;
         will-change: filter;
         transition: filter 300ms;
     }
@@ -136,29 +199,76 @@
     h2 {
         color: #222222;
         font-size: 2rem;
+        font-family: Calibri;
+        align-content: center;
     }
     h3 {
         color: #222222;
         font-size: 0.8rem;
+        font-family: Arial;
     }
+
+    h4 {
+        color: #222222;
+        font-size: 0.8rem;
+        font-family: Arial;
+    }
+
+    p {
+        color: #222222;
+        font-family: Arial;
+        font-size: 0.8rem;
+        width: 80%;
+        text-justify: center;
+    }
+
+    a {
+        color: #336767;
+        font-family: Arial;
+        font-size: 0.8rem;
+        width: 80%;
+        text-justify: center;
+        text-decoration: underline;
+    }
+
+    p1 {
+        color: #222222;
+        font-family: Arial;
+        font-size: 0.8rem;
+        width: 80%;
+        text-justify: center;
+    }
+
     br {
-        line-height: 7;
+        line-height: 3;
+    }
+    input[type="file"] {
+        display: inline-block;
+        color: #222222;
+        border: 1px solid #ccc;
+        padding: 6px 12px;
+        font-size: 1rem;
+        cursor: pointer;
+        margin: 0 auto;
+        text-align: right;
+        font-family: Arial;
+    }
+
+    input[type="radio"] {
+        display: inline-block;
+        color: #222222;
+        padding: 0.2em;
+        height: 1.4em;
+        font-size: 1rem;
+        place-items: left;
+        font-family: Arial;
     }
 
     label {
         display: block;
-        position: relative;
-        text-align: center;
-    }
-    input {
-        display: inline-block;
         color: #222222;
-        padding: 0.3em;
-        height: 2em;
-        font-size: 1rem;
-        place-items: center;
-        justify-content: center;
-        margin: 0 auto;
+        align-content: left;
+        font-family: Arial;
     }
     button {
         display: inline-block;
@@ -168,5 +278,6 @@
         place-items: center;
         justify-content: center;
         border: #222222;
+        font-family: Arial;
     }
 </style>

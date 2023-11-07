@@ -36,7 +36,7 @@ schema = pa.DataFrameSchema(
 # lazy=true gives an overview of validation errors
 # Define a function to validate and log errors
 
-
+"""
 def validate_and_log_data(data):
     log_filename = 'validation_errors.log'
     with open(log_filename, 'w') as log_file:
@@ -52,6 +52,36 @@ def validate_and_log_data(data):
                     log_file.write(f"Error #{error_index}:\n")
                     for col_name, col_error in error_row[1].items():
                         log_file.write(f"{col_name}: {col_error}\n")
+                log_file.write("\n")  # Add a separator between rows
+
+
+# Define a function to read the log file contents
+def read_log_file_contents():
+    log_filename = 'validation_errors.log'
+    try:
+        with open(log_filename, 'r') as log_file:
+            log_contents = log_file.read()
+        return log_contents
+    except FileNotFoundError:
+        return "Log file not found"
+    """
+
+
+def validate_and_log_data(data):
+    log_filename = 'validation_errors.log'
+    with open(log_filename, 'w') as log_file:
+        log_file.write("Schema Errors:\n")
+
+    for row_index, (_, row) in enumerate(data.iterrows(), start=1):
+        try:
+            schema.validate(row.to_frame().T, lazy=True)
+        except pa.errors.SchemaErrors as err:
+            with open(log_filename, 'a') as log_file:
+                log_file.write(f"Error #{row_index}:\n")
+                log_file.write("Schema errors and failure cases:\n")
+                log_file.write(f"{err.failure_cases.to_string()}\n")
+                log_file.write("\nDataFrame object that failed validation:\n")
+                log_file.write(f"{err.data.to_string()}\n")
                 log_file.write("\n")  # Add a separator between rows
 
 

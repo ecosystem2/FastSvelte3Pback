@@ -121,17 +121,21 @@
     <button on:click={sendCSV}>Send</button>
     <br />
     <br />
-    <h3>Disclaimers:</h3>
+    <h3>Guidance:</h3>
     <p1>
         This tool is provided freely as part of the distribution of the Open 3P
         standard for packaging data.
     </p1>
     <br />
-    <p1> You can view the documentation of the standard here. </p1>
+    <p1>
+        You can view the documentation of the standard <a
+            href="https://standard.open3p.org/2.0/">here</a
+        >.
+    </p1>
     <br />
     <p1>
-        The website also provides additional learning resources and access to
-        the Open 3P help desk service.
+        The <a href="https://www.open3p.org/">website</a> also provides additional
+        learning resources and access to the Open 3P help desk service.
     </p1>
     <br />
     <p1>
@@ -151,14 +155,14 @@
     <br />
     <p1>
         This service can also be accessed as an API via the following portal:
+        LINK to API documentation.
     </p1>
     <br />
     <p1>
         Access to this tool is found under the Apache License 2.0. The source
-        code can be found here.
+        code can be found here LINK to GiT.
     </p1>
     <br />
-    <p1> This tool was developed by Ecosystem2 for Open Data Manchester. </p1>
 </div>
 
 <style>
@@ -213,8 +217,18 @@
     p {
         color: #222222;
         font-family: Arial;
+        font-size: 0.8rem;
         width: 80%;
         text-justify: center;
+    }
+
+    a {
+        color: #336767;
+        font-family: Arial;
+        font-size: 0.8rem;
+        width: 80%;
+        text-justify: center;
+        text-decoration: underline;
     }
 
     p1 {

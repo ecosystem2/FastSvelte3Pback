@@ -57,7 +57,7 @@
     <input type="file" on:change={handleFileInput} />
     <br />
     <br />
-    <div>
+    <div class="settings">
         <label>
             <input
                 type="radio"
@@ -162,6 +162,17 @@
 </div>
 
 <style>
+    div.settings {
+        display: grid;
+        grid-template-columns: max-content max-content;
+        grid-gap: 5px;
+    }
+    div.settings label {
+        text-align: left;
+    }
+    div.settings label:after {
+        content: ":";
+    }
     .container {
         display: flex;
         flex-direction: column;
@@ -224,6 +235,8 @@
         padding: 6px 12px;
         font-size: 1rem;
         cursor: pointer;
+        margin: 0 auto;
+        text-align: right;
         font-family: Arial;
     }
 

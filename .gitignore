@@ -16,4 +16,7 @@ schemamodels/models/__pycache__/multipackschema.cpython-311.pyc
 __pycache__/main.cpython-311.pyc
 # Byte-compiled / optimized / DLL files
 __pycache__/
-*.pyc 
+.pyc 
+__pycache__/main.cpython-311.pyc
+schemamodels/models/__pycache__/basematerialschema.cpython-311.pyc
+schemamodels/models/__pycache__/materialschema.cpython-311.pyc

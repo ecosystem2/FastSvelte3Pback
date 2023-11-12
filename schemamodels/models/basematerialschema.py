@@ -47,7 +47,6 @@ schema = pa.DataFrameSchema(
 )
 
 
-# Define a function to validate and log errors
 def validate_and_log_data(data):
     log_filename = 'validation_errors.log'
     with open(log_filename, 'w') as log_file:
@@ -59,10 +58,10 @@ def validate_and_log_data(data):
         except pa.errors.SchemaErrors as err:
             with open(log_filename, 'a') as log_file:
                 log_file.write(f"Error #{row_index}:\n")
-                for error_index, error_row in enumerate(err.failure_cases.iterrows(), start=1):
-                    log_file.write(f"Error #{error_index}:\n")
-                    for col_name, col_error in error_row[1].items():
-                        log_file.write(f"{col_name}: {col_error}\n")
+                log_file.write("Schema errors and failure cases:\n")
+                log_file.write(f"{err.failure_cases.to_string()}\n")
+                log_file.write("\nDataFrame object that failed validation:\n")
+                log_file.write(f"{err.data.to_string()}\n")
                 log_file.write("\n")  # Add a separator between rows
 
 

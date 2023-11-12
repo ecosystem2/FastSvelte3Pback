@@ -30,13 +30,7 @@ from schemamodels.models.loadcatalogueschema import read_log_file_contents as re
 app = FastAPI()
 
 
-@app.get("/")
-async def read_root():
-    return {"Hello": "World"}
-
 # basematerials
-
-
 @app.post("/basematerials/")
 async def upload_base_materials(file: UploadFile):
     # Read CSV data into a pandas DataFrame

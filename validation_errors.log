@@ -1,68 +1,29 @@
 Schema Errors:
 Error #1:
-Error #1:
-schema_context: Column
-column: externalIdentifierValues
-check: coerce_dtype('int64')
-check_number: None
-failure_case: 5684897a
-index: 0
-Error #2:
-schema_context: Column
-column: externalIdentifierValues
-check: dtype('int64')
-check_number: None
-failure_case: object
-index: None
-Error #3:
-schema_context: Column
-column: updateDate
-check: str_matches('^\d{4}-\d{2}-\d{2}$')
-check_number: 0
-failure_case: 2023-01-011
-index: 0
+Schema errors and failure cases:
+  schema_context                    column                               check check_number           failure_case index
+0         Column  externalIdentifierValues               coerce_dtype('int64')         None               5684897a     0
+1         Column          baseMaterialType                            <lambda>            0  bm-material-type-0005     0
+2         Column  externalIdentifierValues                      dtype('int64')         None                 object  None
+3         Column       certificationClaims                        not_nullable         None                    NaN     0
+4         Column                updateDate  str_matches('^\d{4}-\d{2}-\d{2}$')            0            2023-01-011     0
+
+DataFrame object that failed validation:
+                             identifier baseMaterialName       baseMaterialType  materialChemCID externalIdentifierKeys externalIdentifierValues  certification certificationClaims               manufacturer         manufacturedCountry   updateDate
+0  629D144E-93C5-D32C-AE38-26F2143D0BFB       VIRGIN PET  bm-material-type-0005         16212789             primaryKey                 5684897a           True                 NaN  Dsposal - GB-COH-10145252  United Arab Emirates (the)  2023-01-011
 
 Error #2:
-Error #1:
-schema_context: Column
-column: materialChemCID
-check: coerce_dtype('int64')
-check_number: None
-failure_case: 16212789a
-index: 1
-Error #2:
-schema_context: Column
-column: externalIdentifierValues
-check: coerce_dtype('int64')
-check_number: None
-failure_case: 5684897a
-index: 1
-Error #3:
-schema_context: Column
-column: baseMaterialType
-check: <lambda>
-check_number: 0
-failure_case: bm-material-type-0006
-index: 1
-Error #4:
-schema_context: Column
-column: materialChemCID
-check: dtype('int64')
-check_number: None
-failure_case: object
-index: None
-Error #5:
-schema_context: Column
-column: externalIdentifierValues
-check: dtype('int64')
-check_number: None
-failure_case: object
-index: None
-Error #6:
-schema_context: Column
-column: updateDate
-check: str_matches('^\d{4}-\d{2}-\d{2}$')
-check_number: 0
-failure_case: 2023-01-014
-index: 1
+Schema errors and failure cases:
+  schema_context                    column                               check check_number           failure_case index
+0         Column           materialChemCID               coerce_dtype('int64')         None              16212789a     1
+1         Column  externalIdentifierValues               coerce_dtype('int64')         None               5684897a     1
+2         Column          baseMaterialType                            <lambda>            0  bm-material-type-0006     1
+3         Column           materialChemCID                      dtype('int64')         None                 object  None
+4         Column  externalIdentifierValues                      dtype('int64')         None                 object  None
+5         Column       certificationClaims                        not_nullable         None                    NaN     1
+6         Column                updateDate  str_matches('^\d{4}-\d{2}-\d{2}$')            0            2023-01-014     1
+
+DataFrame object that failed validation:
+                               identifier baseMaterialName       baseMaterialType materialChemCID externalIdentifierKeys externalIdentifierValues  certification certificationClaims               manufacturer         manufacturedCountry   updateDate
+1  629D144E-93C5-D32C-AE38-26F2143D0BFB99       VIRGIN PET  bm-material-type-0006       16212789a             primaryKey                 5684897a           True                 NaN  Dsposal - GB-COH-10145252  United Arab Emirates (the)  2023-01-014
 

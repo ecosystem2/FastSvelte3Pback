@@ -39,6 +39,7 @@
   .contents {
     grid-area: contents;
     background: whitesmoke;
+    border-left: 1.4px solid #000;
     width: 100%;
     height: 100%;
     display: flex;

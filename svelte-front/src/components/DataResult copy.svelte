@@ -25,7 +25,7 @@
     });
 </script>
 
-<div>
+<div class="data-output">
     <br />
     {#if logContents}
         <table style="width:100%">
@@ -47,3 +47,10 @@
         <p>No log contents available</p>
     {/if}
 </div>
+
+<style>
+    div {
+        width: 100%;
+        height: 100%;
+    }
+</style>

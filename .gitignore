@@ -1,22 +1,4 @@
 
 validation_errors.log
-__pycache__/main.cpython-311.pyc
 *node_modules/*
-schemamodels/models/__pycache__/basematerialschema.cpython-311.pyc
-schemamodels/models/__pycache__/materialschema.cpython-311.pyc
-schemamodels/models/__pycache__/basematerialschema.cpython-311.pyc
-schemamodels/models/__pycache__/materialschema.cpython-311.pyc
-schemamodels/models/__pycache__/basematerialschema.cpython-311.pyc
-__pycache__/main.cpython-311.pyc
-schemamodels/models/__pycache__/completepackagingschema.cpython-311.pyc
-schemamodels/models/__pycache__/componentschema.cpython-311.pyc
-schemamodels/models/__pycache__/loadcatalogueschema.cpython-311.pyc
-schemamodels/models/__pycache__/loadschema.cpython-311.pyc
-schemamodels/models/__pycache__/multipackschema.cpython-311.pyc
-__pycache__/main.cpython-311.pyc
 # Byte-compiled / optimized / DLL files
-__pycache__/
-.pyc 
-__pycache__/main.cpython-311.pyc
-schemamodels/models/__pycache__/basematerialschema.cpython-311.pyc
-schemamodels/models/__pycache__/materialschema.cpython-311.pyc

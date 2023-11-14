@@ -23,8 +23,8 @@ from schemamodels.models.multipackschema import read_log_file_contents as read_m
 from schemamodels.models.loadschema import read_log_file_contents as read_load_log_contents
 from schemamodels.models.loadcatalogueschema import read_log_file_contents as read_loadcatalogue_log_contents
 
-
-# uvicorn main:app --reload in terminal
+# launching the app in terminal type:
+# uvicorn main:app --reload
 
 
 app = FastAPI()

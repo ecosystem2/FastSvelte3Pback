@@ -1,29 +1,12 @@
 Schema Errors:
 Error #1:
 Schema errors and failure cases:
-  schema_context                    column                               check check_number           failure_case index
-0         Column  externalIdentifierValues               coerce_dtype('int64')         None               5684897a     0
-1         Column          baseMaterialType                            <lambda>            0  bm-material-type-0005     0
-2         Column  externalIdentifierValues                      dtype('int64')         None                 object  None
-3         Column       certificationClaims                        not_nullable         None                    NaN     0
-4         Column                updateDate  str_matches('^\d{4}-\d{2}-\d{2}$')            0            2023-01-011     0
+  schema_context            column                               check  check_number           failure_case index
+0         Column        identifier                            <lambda>             0                  False  None
+1         Column  baseMaterialType                            <lambda>             0  bm-material-type-0005     0
+2         Column        updateDate  str_matches('^\d{4}-\d{2}-\d{2}$')             0            2023-01-011     0
 
 DataFrame object that failed validation:
-                             identifier baseMaterialName       baseMaterialType  materialChemCID externalIdentifierKeys externalIdentifierValues  certification certificationClaims               manufacturer         manufacturedCountry   updateDate
-0  629D144E-93C5-D32C-AE38-26F2143D0BFB       VIRGIN PET  bm-material-type-0005         16212789             primaryKey                 5684897a           True                 NaN  Dsposal - GB-COH-10145252  United Arab Emirates (the)  2023-01-011
-
-Error #2:
-Schema errors and failure cases:
-  schema_context                    column                               check check_number           failure_case index
-0         Column           materialChemCID               coerce_dtype('int64')         None              16212789a     1
-1         Column  externalIdentifierValues               coerce_dtype('int64')         None               5684897a     1
-2         Column          baseMaterialType                            <lambda>            0  bm-material-type-0006     1
-3         Column           materialChemCID                      dtype('int64')         None                 object  None
-4         Column  externalIdentifierValues                      dtype('int64')         None                 object  None
-5         Column       certificationClaims                        not_nullable         None                    NaN     1
-6         Column                updateDate  str_matches('^\d{4}-\d{2}-\d{2}$')            0            2023-01-014     1
-
-DataFrame object that failed validation:
-                               identifier baseMaterialName       baseMaterialType materialChemCID externalIdentifierKeys externalIdentifierValues  certification certificationClaims               manufacturer         manufacturedCountry   updateDate
-1  629D144E-93C5-D32C-AE38-26F2143D0BFB99       VIRGIN PET  bm-material-type-0006       16212789a             primaryKey                 5684897a           True                 NaN  Dsposal - GB-COH-10145252  United Arab Emirates (the)  2023-01-014
+                               identifier baseMaterialName       baseMaterialType  materialChemCID externalIdentifierKeys  externalIdentifierValues  certification certificationClaims               manufacturer         manufacturedCountry   updateDate
+0  629D144E-93C5-D32C-AE38-26F2143D0BFBvv       VIRGIN PET  bm-material-type-0005         16212789             primaryKey                   5684897           True                 909  Dsposal - GB-COH-10145252  United Arab Emirates (the)  2023-01-011
 

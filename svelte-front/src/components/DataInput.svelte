@@ -1,8 +1,9 @@
 <script>
-    import App from "../App.svelte";
+    import { logContentsStore } from "./store";
 
     let file = null;
     let selectedEndpoint = "";
+    let data = null;
 
     const handleFileInput = (event) => {
         file = event.target.files[0];
@@ -17,19 +18,25 @@
         const formData = new FormData();
         formData.append("file", file);
 
-        const response = await fetch(selectedEndpoint, {
-            method: "POST",
-            body: formData,
-        });
+        try {
+            const response = await fetch(selectedEndpoint, {
+                method: "POST",
+                body: formData,
+            });
 
-        if (response.ok) {
-            console.log("CSV file sent successfully");
-            const data = await response.json();
-            if (data.log_contents) {
-                console.log(data.log_contents); // Log the received log contents
+            if (response.ok) {
+                console.log("CSV file sent successfully");
+                data = await response.json(); // Initialize the data variable
+                console.log(data.message);
+                if (data.log_contents) {
+                    console.log(data.log_contents);
+                    logContentsStore.set(data.log_contents);
+                }
+            } else {
+                console.error("Error sending CSV file");
             }
-        } else {
-            console.error("Error sending CSV file");
+        } catch (error) {
+            console.error("An error occurred:", error);
         }
     };
 </script>

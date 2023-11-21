@@ -3,6 +3,7 @@ import pandas as pd
 from pandera.typing import Series
 from typing import Optional
 import uuid
+import json
 
 # Define a regular expression to match ISO 8601 date format "YYYY-MM-DD"
 iso8601_date_pattern = r"^\d{4}-\d{2}-\d{2}$"
@@ -46,7 +47,7 @@ schema = pa.DataFrameSchema(
     coerce=True
 )
 
-
+"""
 def validate_and_log_data(data):
     log_filename = 'validation_errors.log'
     with open(log_filename, 'w') as log_file:
@@ -63,9 +64,52 @@ def validate_and_log_data(data):
                 log_file.write("\nDataFrame object that failed validation:\n")
                 log_file.write(f"{err.data.to_string()}\n")
                 log_file.write("\n")  # Add a separator between rows
+"""
 
+
+def validate_and_log_data(data):
+    validation_errors = []
+
+    for row_index, (_, row) in enumerate(data.iterrows(), start=1):
+        try:
+            schema.validate(row.to_frame().T, lazy=True)
+        except pa.errors.SchemaErrors as err:
+            error_iteration = f"Error #{row_index}"
+
+            error_details = {
+                'Iteration': error_iteration,
+                'Schema_errors_and_failure_cases': err.failure_cases.to_string(),
+                'DataFrame_object_that_failed_validation': err.data.to_string()
+            }
+
+            validation_errors.append(error_details)
+
+    # Convert the validation_errors list to a pandas DataFrame
+    validation_errors_df = pd.DataFrame(validation_errors)
+
+    # Convert the DataFrame to a dictionary with the 'orient' parameter set to 'records'
+    result_dict = validation_errors_df.to_dict(orient='split')
+
+    # Convert the dictionary to a JSON-formatted string with indentation
+    json_result = json.dumps(result_dict, sort_keys=False, indent=4)
+
+    return json_result
 
 # Define a function to read the log file contents
+
+
+"""
+def read_log_file_contents():
+    log_filename = 'validation_errors.log'
+    try:
+        with open(log_filename, 'r') as log_file:
+            log_contents = log_file.read()
+        return log_contents
+    except FileNotFoundError:
+        return "Log file not found"
+"""
+
+
 def read_log_file_contents():
     log_filename = 'validation_errors.log'
     try:

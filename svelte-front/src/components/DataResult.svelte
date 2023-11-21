@@ -1,8 +1,16 @@
 <script>
     import { onMount } from "svelte";
+    import { logContentsStore } from "./store";
 
     let logContents = "";
 
+    // Subscribe to changes in the store
+    logContentsStore.subscribe((value) => {
+        logContents = value;
+        console.log("logContents:", logContents); // Log to the console
+    });
+
+    /*
     const setupWebSocket = () => {
         const socket = new WebSocket("ws://localhost:8000/ws");
 
@@ -10,7 +18,7 @@
             logContents = event.data;
         };
     };
-
+*/
     const downloadLog = () => {
         const blob = new Blob([logContents], { type: "text/plain" });
         const url = URL.createObjectURL(blob);
@@ -20,9 +28,9 @@
         link.click();
     };
 
-    onMount(() => {
-        setupWebSocket();
-    });
+    //    onMount(() => {
+    //        setupWebSocket();
+    //    });
 </script>
 
 <div>

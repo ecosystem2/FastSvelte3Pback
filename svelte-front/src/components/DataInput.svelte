@@ -57,8 +57,8 @@
         the standard.
     </p>
     <p>
-        Upload a .csv or .json file then select a schema level below to test
-        your data.
+        Upload a .csv, .json or .xlsx file and select a schema level below to
+        test your data.
     </p>
     <br />
     <input type="file" on:change={handleFileInput} />

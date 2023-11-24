@@ -30,7 +30,7 @@
 
   .side-bar {
     grid-area: side;
-    background: grey;
+    background: rgb(155, 155, 155);
     width: 100%;
     height: 100%;
   }

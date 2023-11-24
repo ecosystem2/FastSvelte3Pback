@@ -60,6 +60,6 @@
 
     button {
         vertical-align: middle;
-        margin-left: 15%;
+        margin-left: 20%;
     }
 </style>

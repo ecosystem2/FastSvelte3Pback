@@ -50,12 +50,7 @@
         />
     </a>
     <h2>Open 3P Validator</h2>
-    <br />
-
-    <p>
-        The Open 3P validation tool is used to test if your data complies with
-        the standard.
-    </p>
+    <p>This service is used to test if your data complies with the standard.</p>
     <p>
         Upload a .csv, .json or .xlsx file and select a schema level below to
         test your data.
@@ -147,7 +142,7 @@
         </p1>
     </details>
     <details>
-        <summary>Validation</summary>
+        <summary>Validation:</summary>
         <p1>
             This tool tests your data against the schema for Open 3P. It does
             not store your data.
@@ -193,7 +188,7 @@
         </p1>
     </details>
     <details>
-        <summary>Documentation</summary>
+        <summary>Documentation:</summary>
         <p1>
             Validation results are delivered by the <a
                 href="https://pandera.readthedocs.io/en/stable/index.html"
@@ -204,8 +199,11 @@
         <br />
         <br />
         <p1>
-            This service can also be accessed as an API via the following
-            portal: LINK to API documentation.
+            This service is accessible as an API via the following portal: <a
+                href="https://open3p.ecosystem2.co.uk/api/docs"
+            >
+                API.
+            </a>
         </p1>
         <br />
         <br />
@@ -238,7 +236,7 @@
         height: 100%; /* Adjust this according to your layout */
     }
     .logo {
-        height: 12.4em;
+        height: 12.7em;
         padding: 0.1em;
         will-change: filter;
         transition: filter 300ms;
@@ -251,26 +249,26 @@
     }
     h2 {
         color: #222222;
-        font-size: 2rem;
+        font-size: 2.4rem;
         font-family: Calibri;
         align-content: center;
     }
     h3 {
         color: #222222;
-        font-size: 0.8rem;
+        font-size: 1rem;
         font-family: Arial;
     }
 
     h4 {
         color: #222222;
-        font-size: 0.8rem;
+        font-size: 1rem;
         font-family: Arial;
     }
 
     p {
         color: #222222;
         font-family: Arial;
-        font-size: 0.8rem;
+        font-size: 1rem;
         width: 80%;
         text-justify: center;
     }
@@ -278,7 +276,7 @@
     a {
         color: #336767;
         font-family: Arial;
-        font-size: 0.8rem;
+        font-size: 1rem;
         width: 80%;
         text-justify: center;
         text-decoration: underline;
@@ -287,7 +285,7 @@
     p1 {
         color: #222222;
         font-family: Arial;
-        font-size: 0.8rem;
+        font-size: 1rem;
         width: 80%;
         text-justify: center;
     }
@@ -326,7 +324,7 @@
     button {
         display: inline-block;
         color: #222222;
-        height: 2em;
+        height: 2.4em;
         font-size: 1rem;
         place-items: center;
         justify-content: center;

@@ -128,48 +128,94 @@
     <button on:click={sendCSV}>Send</button>
     <br />
     <br />
-    <h3>Guidance:</h3>
-    <p1>
-        This tool is provided freely as part of the distribution of the Open 3P
-        standard for packaging data.
-    </p1>
-    <br />
-    <p1>
-        You can view the documentation of the standard <a
-            href="https://standard.open3p.org/2.0/">here</a
-        >.
-    </p1>
-    <br />
-    <p1>
-        The <a href="https://www.open3p.org/">website</a> also provides additional
-        learning resources and access to the Open 3P help desk service.
-    </p1>
-    <br />
-    <p1>
-        This tool does not store files uploaded to it. Instead it provides
-        access to a library that tests your data against the schema for Open 3P.
-    </p1>
-    <br />
-    <p1>
-        The validator looks for correctly labelled column headings that are
-        required and recommended within the standard guidelines.
-    </p1>
-    <br />
-    <p1>
-        As such you are able to include columns not in the schema for use within
-        your organisation.
-    </p1>
-    <br />
-    <p1>
-        This service can also be accessed as an API via the following portal:
-        LINK to API documentation.
-    </p1>
-    <br />
-    <p1>
-        Access to this tool is found under the Apache License 2.0. The source
-        code can be found here LINK to GiT.
-    </p1>
-    <br />
+    <details>
+        <summary>Guidance:</summary>
+        <p1>
+            This tool is provided freely as part of the distribution of the Open
+            3P standard for packaging data.
+        </p1>
+        <p1>
+            <br />
+            <br />You can view the documentation of the standard
+            <a href="https://standard.open3p.org/2.0/">here</a>.
+        </p1>
+        <br />
+        <br />
+        <p1>
+            The Open 3P <a href="https://www.open3p.org/">website</a> also provides
+            additional learning resources and access to the Open 3P help desk service.
+        </p1>
+    </details>
+    <details>
+        <summary>Validation</summary>
+        <p1>
+            This tool tests your data against the schema for Open 3P. It does
+            not store your data.
+        </p1>
+        <p1>
+            <br />
+            <br /> The validator looks for column headings that are required and
+            recommended within the standard. Please refer to the
+            <a
+                href="https://standard.open3p.org/2.0/3_Data_Specification/3_1_Base_Materials/"
+                >documentation</a
+            > for each schema to correctly label your columns.
+        </p1>
+        <br />
+        <br />
+        <p1>
+            You are able to include columns not in the schema e.g. for use
+            within your organisation. These will be ignored during validation.
+        </p1>
+        <br />
+        <br />
+        <p1>
+            Results are delivered as JSON. "DataFrameSchema" errors indicate
+            columns required by Open3P.
+        </p1>
+        <br />
+        <br />
+        <p1>
+            "Column" errors indicate failures at a cell/value level. Column,
+            failure case and index keys will help you to debug the error.
+        </p1>
+        <br />
+        <br />
+        <p1>
+            A summary copy of each row with one or more failures is identified
+            at the bottom of each error.
+        </p1>
+        <br />
+        <br />
+        <p1
+            >You are able to download a log of error reports. The validation API
+            can also be accessed via command line (see Documentation).
+        </p1>
+    </details>
+    <details>
+        <summary>Documentation</summary>
+        <p1>
+            Validation results are delivered by the <a
+                href="https://pandera.readthedocs.io/en/stable/index.html"
+            >
+                Pandera
+            </a>library.
+        </p1>
+        <br />
+        <br />
+        <p1>
+            This service can also be accessed as an API via the following
+            portal: LINK to API documentation.
+        </p1>
+        <br />
+        <br />
+        <p1>
+            Access to this tool is found under the Apache License 2.0. The
+            source code can be found here LINK to GiT.
+        </p1>
+        <br />
+        <br />
+    </details>
 </div>
 
 <style>
@@ -286,5 +332,22 @@
         justify-content: center;
         border: #222222;
         font-family: Arial;
+    }
+    details {
+        font-family: Arial;
+        color: #222222;
+        text-align: center;
+        padding-bottom: 4%;
+        width: 80%;
+    }
+    summary {
+        cursor: pointer;
+        height: 2em;
+        color: #222222;
+        padding-bottom: 4%;
+    }
+    details[open] > summary {
+        color: #222222;
+        padding-bottom: 4%;
     }
 </style>

@@ -26,12 +26,16 @@ def check_uuid(value):
         return False
 
 
+def check_unique_identifiers(series):
+    return series.is_unique
+
+
 # import column from pandera as pa.column
 # add missing columns - will print a return schema that indicates missing columns - with a value of NaN if no default is declared.
 # strict='filter' will drop columns not in the schema from the validation process
 schema = pa.DataFrameSchema(
     {
-        "identifier": pa.Column(str),
+        "identifier": pa.Column(str, checks=pa.Check.str_length(min_value=36, max_value=36)),
         "baseMaterialName": pa.Column(str),
         "baseMaterialType": pa.Column(pa.String, checks=pa.Check(lambda s: s.isin(controlled_list)), required=False),
         "materialChemCID": pa.Column(int, required=False),

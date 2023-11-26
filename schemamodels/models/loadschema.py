@@ -31,11 +31,11 @@ def check_uuid(value):
 # add missing columns - will print a return schema that indicates missing columns - with a value of NaN if no default is declared.
 schema = pa.DataFrameSchema(
     {
-        "identifier": pa.Column(str, checks=pa.Check(lambda s: check_uuid4(s))),
+        "identifier": pa.Column(str, checks=pa.Check.str_length(min_value=36, max_value=36)),
         "loadName": pa.Column(str, required=False),
         "description": pa.Column(str, required=False),
         "externalIdentifier": pa.Column(dict, required=False),
-        "loadIdentifiers": pa.Column(list, checks=pa.Check(lambda s: check_uuid4(s))),
+        "loadIdentifiers": pa.Column(list),
         "startDate": pa.Column(pa.String, checks=pa.Check.str_matches(iso8601_date_pattern)),
         "endDate": pa.Column(pa.String, checks=pa.Check.str_matches(iso8601_date_pattern)),
         "destinationAddressName": pa.Column(str, required=False),

@@ -32,7 +32,7 @@ def check_uuid(value):
 # import column from pandera as pa.column
 schema = pa.DataFrameSchema(
     {
-        "identifier": pa.Column(str, checks=pa.Check(lambda s: check_uuid4(s))),
+        "identifier": pa.Column(str, checks=pa.Check.str_length(min_value=36, max_value=36)),
         "componentName": pa.Column(str, required=False),
         "description": pa.Column(str, required=False),
         "externalIdentifier": pa.Column(dict, required=False),

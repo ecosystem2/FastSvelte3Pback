@@ -32,7 +32,7 @@ def check_uuid(value):
 # add missing columns - will print a return schema that indicates missing columns - with a value of NaN if no default is declared.
 schema = pa.DataFrameSchema(
     {
-        "identifier": pa.Column(str, checks=pa.Check(lambda s: check_uuid4(s))),
+        "identifier": pa.Column(str, checks=pa.Check.str_length(min_value=36, max_value=36)),
         "materialName": pa.Column(str),
         "externalIdentifier": pa.Column(dict, required=False),
         "materialConstituents": pa.Column(list),
@@ -61,7 +61,7 @@ def validateAndLog(data):
             error_info = {
                 'row_index': row.name,
                 'schema_errors': err.failure_cases.to_dict(orient='records'),
-                # 'failed_data': err.data.to_dict(orient='records')
+                'failed_data': err.data.to_dict(orient='records')
             }
             validation_results.append(error_info)
 

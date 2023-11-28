@@ -3,13 +3,14 @@ import pandas as pd
 from pandera.typing import Series
 from typing import Optional
 import uuid
+import json
 
 # Define a regular expression to match ISO 8601 date format "YYYY-MM-DD"
 iso8601_date_pattern = r"^\d{4}-\d{2}-\d{2}$"
 
 # Load the CSV file as a controlled list
 controlled_list_df = pd.read_csv(
-    'schemamodels\models\controlled_lists\list_of_lists_nov23.csv')
+    './schemamodels/models/controlled_lists/list_of_lists_nov23.csv')
 # Replace 'column_name' with the actual column name in your CSV
 controlled_list = controlled_list_df['baseMaterialType'].tolist()
 
@@ -17,12 +18,16 @@ controlled_list = controlled_list_df['baseMaterialType'].tolist()
 # previous check was pa.Check.str_length(36),
 
 
-def check_uuid4(value):
+def check_uuid(value):
     try:
-        uuid_obj = uuid.UUID(value, version=4)
+        uuid.UUID(value)
         return True
     except ValueError:
         return False
+
+
+def check_unique_identifiers(series):
+    return series.is_unique
 
 
 # import column from pandera as pa.column
@@ -30,7 +35,7 @@ def check_uuid4(value):
 # strict='filter' will drop columns not in the schema from the validation process
 schema = pa.DataFrameSchema(
     {
-        "identifier": pa.Column(str, checks=pa.Check(lambda s: check_uuid4(s))),
+        "identifier": pa.Column(str, checks=pa.Check.str_length(min_value=36, max_value=36)),
         "baseMaterialName": pa.Column(str),
         "baseMaterialType": pa.Column(pa.String, checks=pa.Check(lambda s: s.isin(controlled_list)), required=False),
         "materialChemCID": pa.Column(int, required=False),
@@ -46,31 +51,24 @@ schema = pa.DataFrameSchema(
     coerce=True
 )
 
+# lazy=true gives an overview of validation errors
+# Define a function to validate and log errors
 
-def validate_and_log_data(data):
-    log_filename = 'validation_errors.log'
-    with open(log_filename, 'w') as log_file:
-        log_file.write("Schema Errors:\n")
 
-    for row_index, (_, row) in enumerate(data.iterrows(), start=1):
+def validateAndLog(data):
+    validation_results = []
+
+    def validate_row(row):
         try:
             schema.validate(row.to_frame().T, lazy=True)
         except pa.errors.SchemaErrors as err:
-            with open(log_filename, 'a') as log_file:
-                log_file.write(f"Error #{row_index}:\n")
-                log_file.write("Schema errors and failure cases:\n")
-                log_file.write(f"{err.failure_cases.to_string()}\n")
-                log_file.write("\nDataFrame object that failed validation:\n")
-                log_file.write(f"{err.data.to_string()}\n")
-                log_file.write("\n")  # Add a separator between rows
+            error_info = {
+                'row_index': row.name,
+                'schema_errors': err.failure_cases.to_dict(orient='records'),
+                'failed_data': err.data.to_dict(orient='records')
+            }
+            validation_results.append(error_info)
 
-
-# Define a function to read the log file contents
-def read_log_file_contents():
-    log_filename = 'validation_errors.log'
-    try:
-        with open(log_filename, 'r') as log_file:
-            log_contents = log_file.read()
-        return log_contents
-    except FileNotFoundError:
-        return "Log file not found"
+    data.apply(validate_row, axis=1)
+    print(json.dumps(validation_results, indent=4))
+    return json.dumps(validation_results, indent=4)

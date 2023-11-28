@@ -1,0 +1,86 @@
+[
+    {
+        "row_index": 0,
+        "schema_errors": [
+            {
+                "schema_context": "DataFrameSchema",
+                "column": null,
+                "check": "column_in_dataframe",
+                "check_number": null,
+                "failure_case": "materialName",
+                "index": null
+            },
+            {
+                "schema_context": "DataFrameSchema",
+                "column": null,
+                "check": "column_in_dataframe",
+                "check_number": null,
+                "failure_case": "materialConstituents",
+                "index": null
+            },
+            {
+                "schema_context": "Column",
+                "column": "certificationClaims",
+                "check": "coerce_dtype('<class 'list'>')",
+                "check_number": null,
+                "failure_case": 909,
+                "index": 0
+            },
+            {
+                "schema_context": "Column",
+                "column": "manufacturedCountry",
+                "check": "coerce_dtype('int64')",
+                "check_number": null,
+                "failure_case": "United Arab Emirates (the)",
+                "index": 0
+            },
+            {
+                "schema_context": "Column",
+                "column": "identifier",
+                "check": "<lambda>",
+                "check_number": 0,
+                "failure_case": "NameError(\"name 'check_uuid4' is not defined\")",
+                "index": null
+            },
+            {
+                "schema_context": "Column",
+                "column": "certificationClaims",
+                "check": "dtype('<class 'list'>')",
+                "check_number": null,
+                "failure_case": 909,
+                "index": 0
+            },
+            {
+                "schema_context": "Column",
+                "column": "manufacturedCountry",
+                "check": "dtype('int64')",
+                "check_number": null,
+                "failure_case": "object",
+                "index": null
+            },
+            {
+                "schema_context": "Column",
+                "column": "updateDate",
+                "check": "str_matches('^\\d{4}-\\d{2}-\\d{2}$')",
+                "check_number": 0,
+                "failure_case": "2023-01-011",
+                "index": 0
+            }
+        ],
+        "failed_data": [
+            {
+                "identifier": "629D144E-93C5-D32C-AE38-26F2143D0BFBvv",
+                "baseMaterialName": "VIRGIN PET",
+                "baseMaterialType": "bm-material-type-0005",
+                "materialChemCID": 16212789,
+                "externalIdentifierKeys": "primaryKey",
+                "externalIdentifierValues": 5684897,
+                "certification": true,
+                "certificationClaims": 909,
+                "manufacturer": "Dsposal - GB-COH-10145252",
+                "manufacturedCountry": "United Arab Emirates (the)",
+                "updateDate": "2023-01-011"
+            }
+        ]
+    }
+]

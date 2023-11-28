@@ -5,8 +5,6 @@
   import DataResult from "./components/DataResult.svelte";
 
   //onMount is a lifecycle method - it allows us to run commands when this component is mounted.
-  //set todos from our todo service and subscribe to await this value
-  //below makes variables accessible - allows us to print what is inside the variable e.g. to console
 </script>
 
 <main class="root">
@@ -32,7 +30,7 @@
 
   .side-bar {
     grid-area: side;
-    background: grey;
+    background: rgb(155, 155, 155);
     width: 100%;
     height: 100%;
   }
@@ -42,7 +40,8 @@
     border-left: 1.4px solid #000;
     width: 100%;
     height: 100%;
-    display: flex;
     padding-left: 4%;
+    overflow: scroll;
+    position: relative;
   }
 </style>

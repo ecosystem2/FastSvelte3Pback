@@ -1,12 +1,25 @@
 Schema Errors:
 Error #1:
 Schema errors and failure cases:
-  schema_context            column                               check  check_number           failure_case index
-0         Column        identifier                            <lambda>             0                  False  None
-1         Column  baseMaterialType                            <lambda>             0  bm-material-type-0005     0
-2         Column        updateDate  str_matches('^\d{4}-\d{2}-\d{2}$')             0            2023-01-011     0
+     schema_context               column                               check check_number                             failure_case index
+0   DataFrameSchema                 None                    column_in_schema         None                         baseMaterialName  None
+3   DataFrameSchema                 None                 column_in_dataframe         None  completePackagingConstituentsIdentifier  None
+4   DataFrameSchema                 None                 column_in_dataframe         None              componentContactWithProduct  None
+5   DataFrameSchema                 None                 column_in_dataframe         None                                  onTheGo  None
+6   DataFrameSchema                 None                 column_in_dataframe         None                           householdWaste  None
+7   DataFrameSchema                 None                 column_in_dataframe         None                     depositReturnSchemes  None
+8   DataFrameSchema                 None                 column_in_dataframe         None                                   weight  None
+9   DataFrameSchema                 None                 column_in_dataframe         None                          weightTolerance  None
+10  DataFrameSchema                 None                 column_in_dataframe         None                      weightToleranceType  None
+11  DataFrameSchema                 None                 column_in_dataframe         None                          partOfMultipack  None
+1            Column  certificationClaims      coerce_dtype('<class 'list'>')         None                                      909     0
+2            Column  manufacturedCountry               coerce_dtype('int64')         None               United Arab Emirates (the)     0
+12           Column           identifier                            <lambda>            0                                    False  None
+13           Column  certificationClaims             dtype('<class 'list'>')         None                                      909     0
+14           Column  manufacturedCountry                      dtype('int64')         None                                   object  None
+15           Column           updateDate  str_matches('^\d{4}-\d{2}-\d{2}$')            0                              2023-01-011     0
 
 DataFrame object that failed validation:
-                               identifier baseMaterialName       baseMaterialType  materialChemCID externalIdentifierKeys  externalIdentifierValues  certification certificationClaims               manufacturer         manufacturedCountry   updateDate
-0  629D144E-93C5-D32C-AE38-26F2143D0BFBvv       VIRGIN PET  bm-material-type-0005         16212789             primaryKey                   5684897           True                 909  Dsposal - GB-COH-10145252  United Arab Emirates (the)  2023-01-011
+                               identifier baseMaterialName       baseMaterialType materialChemCID externalIdentifierKeys externalIdentifierValues  certification certificationClaims               manufacturer         manufacturedCountry   updateDate
+0  629D144E-93C5-D32C-AE38-26F2143D0BFBvv       VIRGIN PET  bm-material-type-0005        16212789             primaryKey                  5684897           True                 909  Dsposal - GB-COH-10145252  United Arab Emirates (the)  2023-01-011
 

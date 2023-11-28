@@ -23,7 +23,7 @@ cd into the root directory with main.py
 uvicorn main:app --reload #Start the Fast API server
 ```
 
-Typically hosted at `http://localhost:5173`.
+Typically hosted at `http://localhost:8000`.
 
 | Screenshot                                                            | Description|
 |-----------------------------------------------------------------------|------------|

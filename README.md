@@ -4,7 +4,7 @@ API microservice, using Python and FastAPI, for testing files against industry s
 
 ## Development Instructions
 
-Clone this repo and install [Node.js](http://nodejs.org/).  From the root directory of this repo, run:
+Clone this repo and install [Python](https://www.python.org/downloads/).  From the root directory of this repo, run:
 
 ```python
 python -m venv ./venv #Create your python virtual environment

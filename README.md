@@ -29,16 +29,16 @@ Typically hosted at `http://localhost:8000`.
 
 A docker file and github workflow is included within this repository. When a release is created, the docker container is built and submitted to dockerhub.
 
-# Seting up dockerhub access token
+### Seting up dockerhub access token
 
-# Setting up dockerhub credentials
+### Setting up dockerhub credentials
 - Below the repository name, in the top left corner of the screen, there is a navigation bar; **Select Settings**
 - You should be presented with a page consisting with a sidbar and the repositories settings, **Select Secrets and variables**
 - With the sub-section expanded, **Select Actions**
 - This section **should already have two repository secrets, DOCKER_USERNAME and DOCKER_PASSWORD**
 - **If this is not the case, please add them**
 
-# Building docker container
+### Building docker container
 
 | Screenshot                                                            | Description|
 |-----------------------------------------------------------------------|------------|

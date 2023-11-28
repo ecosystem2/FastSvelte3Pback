@@ -1,23 +1,39 @@
-create your python virtual environment
+<p align="center"><img src="https://github.com/E2-RJ/Assets_ecosystem2/blob/main/Full_Logo/e2_full_logo_navy.svg" /></p>
 
-pip install install requirements.txt
+API microservice, using Python and FastAPI, for testing files against industry schemas.
+
+## Development Instructions
+
+Clone this repo and install [Node.js](http://nodejs.org/).  From the root directory of this repo, run:
+
+```python
+python -m venv ./venv #Create your python virtual environment
+
+#WINDOWS
+venv\Scripts\activate.bat
+#LINUX
+. venv/bin/activate
+
+pip install --no-cache-dir --upgrade -r requirements.txt #Install project dependancies 
+``` 
 
 cd into the root directory with main.py
 
-to start your Fast API server run the following command
+```python
+uvicorn main:app --reload #Start the Fast API server
+```
 
-uvicorn main:app --reload
+Typically hosted at `http://localhost:5173`.
 
-this starts the backend server
+| Screenshot                                                            | Description|
+|-----------------------------------------------------------------------|------------|
+| ![](Demonstration/Demonstration.GIF)        | Current state of the webapp. |
 
-Following this in a new terminal window
+##TODO
+- Upload Working example
+- Upload Demonstartion video & GIF
+- Share with collaborator
 
-cd into the svelte-front directory
+## Contributions
 
-run the commands:
-
-npm install
-npm run build
-npm run dev
-
-this should start up your instance of svelte frontend
+Pull requests are appreciated!  Please use the same [Contributor License Agreement (CLA)](https://github.com/AnalyticalGraphicsInc/cesium/blob/master/CONTRIBUTING.md) and [Coding Guide](https://github.com/AnalyticalGraphicsInc/cesium/blob/master/Documentation/Contributors/CodingGuide/README.md) used for [Cesium](http://cesiumjs.org/).

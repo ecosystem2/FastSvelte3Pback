@@ -33,9 +33,13 @@ A docker file and github workflow is included within this repository. When a rel
 
 ### Setting up dockerhub credentials
 - Below the repository name, in the top left corner of the screen, there is a navigation bar; **Select Settings**
+  <p align="center"><img src="https://github.com/E2-RJ/Assets_ecosystem2/blob/57252391b1b87060c6283d9ae702c6584142bd51/Screenshot_Repo-Bar.png" /></p>
 - You should be presented with a page consisting with a sidbar and the repositories settings, **Select Secrets and variables**
+  <p align="center"><img src="https://github.com/E2-RJ/Assets_ecosystem2/blob/57252391b1b87060c6283d9ae702c6584142bd51/Screenshot_RepoSettings-Sidebar.png" /></p>
 - With the sub-section expanded, **Select Actions**
+  <p align="center"><img src="https://github.com/E2-RJ/Assets_ecosystem2/blob/57252391b1b87060c6283d9ae702c6584142bd51/Screenshot_Repo-Secrets.png" /></p>
 - This section **should already have two repository secrets, DOCKER_USERNAME and DOCKER_PASSWORD**
+  <p align="center"><img src="https://github.com/E2-RJ/Assets_ecosystem2/blob/57252391b1b87060c6283d9ae702c6584142bd51/Screenshot_Docker_Credentials.png" /></p>
 - **If this is not the case, please add them**
 
 ### Building docker container

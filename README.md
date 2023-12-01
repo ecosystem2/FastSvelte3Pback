@@ -29,7 +29,7 @@ Typically hosted at `http://localhost:8000`.
 
 A docker file and github workflow is included within this repository. When a release is created, the docker container is built and submitted to dockerhub.
 
-It is assumed you already have accounts for [Dockerhub](https://hub.docker.com) and [Github](https://github.com), along with a [Docker](https://www.docker.com/get-started/) instance set up for the built container to run on. If any information is needed on how ecosystem2 handles hosting, please reach to us via our [website](ecosystem2.co.uk) or [email](hello@ecosystem2.co.uk).
+It is assumed you already have accounts for [Dockerhub](https://hub.docker.com) and [Github](https://github.com), along with a [Docker](https://www.docker.com/get-started/) instance set up for the built container to run on. If any information is needed on how ecosystem2 handles hosting, please reach to us via our [website](https://ecosystem2.co.uk) or [email](mailto:hello@ecosystem2.co.uk).
 
 ### Seting up dockerhub access token
 - Once logged into Dockerhub, select the downward triangle next to your username on the far right of your screen.

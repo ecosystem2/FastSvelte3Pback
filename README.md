@@ -1,6 +1,6 @@
 <p align="center"><img src="https://github.com/E2-RJ/Assets_ecosystem2/blob/main/Full_Logo/e2_full_logo_navy.svg" /></p>
 
-API microservice, using Python, Pandara and FastAPI, for testing files against industry schemas.
+API microservice, using Python and FastAPI, for testing files against industry schemas. Data validation uses Pandera.
 
 ## Development Instructions
 
@@ -77,4 +77,4 @@ It is assumed you already have accounts for [Dockerhub](https://hub.docker.com) 
 
 ## Contributions
 
-Pull requests are appreciated!  Please use the same [Contributor License Agreement (CLA)](https://github.com/AnalyticalGraphicsInc/cesium/blob/master/CONTRIBUTING.md) and [Coding Guide](https://github.com/AnalyticalGraphicsInc/cesium/blob/master/Documentation/Contributors/CodingGuide/README.md) used for [Cesium](http://cesiumjs.org/).
+Pull requests are appreciated! 

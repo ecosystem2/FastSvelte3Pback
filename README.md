@@ -25,7 +25,8 @@ uvicorn main:app --reload #Start the Fast API server
 
 Typically hosted at `http://localhost:8000`.
 
-Fast API endpoints are hosted in main.py in the root directory
+## Folder Structure
+- Fast API endpoints are hosted in main.py in the root directory
 - /schemamodels/models contain the Pandera schema model files
 - /schemamodels/models/controlled_lists contains the controlled list as a .csv to be updated
 - updated or new controlled lists are imported into the relevant Pandera schema

@@ -32,23 +32,23 @@ def check_uuid(value):
 schema = pa.DataFrameSchema(
     {
         "identifier": pa.Column(str, checks=pa.Check.str_length(min_value=36, max_value=36)),
-        "loadName": pa.Column(str, required=False),
-        "description": pa.Column(str, required=False),
-        "externalIdentifier": pa.Column(dict, required=False),
-        "loadIdentifiers": pa.Column(list),
-        "startDate": pa.Column(pa.String, checks=pa.Check.str_matches(iso8601_date_pattern)),
-        "endDate": pa.Column(pa.String, checks=pa.Check.str_matches(iso8601_date_pattern)),
-        "destinationAddressName": pa.Column(str, required=False),
+        "loadName": pa.Column(str, required=False, nullable=True),
+        "description": pa.Column(str, required=False, nullable=True),
+        "externalIdentifiers": pa.Column(dict, required=False, nullable=True),
+        "loadIdentifiers": pa.Column(str),
+        "startDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern)),
+        "endDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern)),
+        "destinationAddressName": pa.Column(str, required=False, nullable=True),
         "destinationAddressStreet": pa.Column(str),
         "destinationAddressCountry": pa.Column(str),
         "destinationPostalCode": pa.Column(str),
         "timesSent": pa.Column(int),
-        "updateDate": pa.Column(pa.String, checks=pa.Check.str_matches(iso8601_date_pattern)),
+        "updateDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern)),
     },
-    #   strict='filter',
-    #   add_missing_columns=True,
+    strict="filter",
     coerce=True
 )
+
 
 # lazy=true gives an overview of validation errors
 # Define a function to validate and log errors

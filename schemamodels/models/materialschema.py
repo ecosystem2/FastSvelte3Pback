@@ -34,16 +34,15 @@ schema = pa.DataFrameSchema(
     {
         "identifier": pa.Column(str, checks=pa.Check.str_length(min_value=36, max_value=36)),
         "materialName": pa.Column(str),
-        "externalIdentifier": pa.Column(dict, required=False),
-        "materialConstituents": pa.Column(list),
-        "combinationPurpose": pa.Column(str, required=False),
-        "certification": pa.Column(bool, required=False),
-        "certificationClaims": pa.Column(list, required=False),
-        "manufacturedCountry": pa.Column(int, required=False),
-        "updateDate": pa.Column(pa.String, checks=pa.Check.str_matches(iso8601_date_pattern)),
+        "externalIdentifier": pa.Column(dict, required=False, nullable=True),
+        "materialConstituents": pa.Column(str),
+        "combinationPurpose": pa.Column(str, required=False, nullable=True),
+        "certification": pa.Column(bool, required=False, nullable=True),
+        "certificationClaims": pa.Column(str, required=False, nullable=True),
+        "manufacturedCountry": pa.Column(int, required=False, nullable=True),
+        "updateDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern)),
     },
-    #   strict='filter',
-    #   add_missing_columns=True,
+    strict="filter",
     coerce=True
 )
 

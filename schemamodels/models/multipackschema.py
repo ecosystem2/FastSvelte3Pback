@@ -32,15 +32,15 @@ def check_uuid(value):
 schema = pa.DataFrameSchema(
     {
         "identifier": pa.Column(str, checks=pa.Check.str_length(min_value=36, max_value=36)),
-        "multipackName": pa.Column(str, required=False, nullable=True),
-        "description": pa.Column(str, required=False, nullable=True),
-        "externalIdentifier": pa.Column(dict, required=False, nullable=True),
+        "multipackName": pa.Column(str, nullable=True, required=False),
+        "description": pa.Column(str, nullable=True, required=False),
+        "externalIdentifier": pa.Column(dict, nullable=True, required=False),
         "multipackConstituentIdentifiers": pa.Column(str),
-        "tier": pa.Column(int, required=False, nullable=True),
+        "tier": pa.Column(int, nullable=True, required=False),
         "identicalQuantity": pa.Column(int),
         "updateDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern)),
-        "releaseDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern), required=False, nullable=True),
-        "discontinueDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern), required=False, nullable=True),
+        "releaseDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern), nullable=True, required=False),
+        "discontinueDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern), nullable=True, required=False),
     },
     strict="filter",
     coerce=True

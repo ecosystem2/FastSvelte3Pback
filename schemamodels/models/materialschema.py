@@ -4,7 +4,6 @@ from pandera.typing import Series
 from typing import Optional
 import uuid
 import json
-from fastapi.responses import JSONResponse
 
 # Define a regular expression to match ISO 8601 date format "YYYY-MM-DD"
 iso8601_date_pattern = r"^\d{4}-\d{2}-\d{2}$"
@@ -34,12 +33,12 @@ schema = pa.DataFrameSchema(
     {
         "identifier": pa.Column(str, checks=pa.Check.str_length(min_value=36, max_value=36)),
         "materialName": pa.Column(str),
-        "externalIdentifier": pa.Column(dict, required=False, nullable=True),
+        "externalIdentifier": pa.Column(dict, nullable=True, required=False),
         "materialConstituents": pa.Column(str),
-        "combinationPurpose": pa.Column(str, required=False, nullable=True),
-        "certification": pa.Column(bool, required=False, nullable=True),
-        "certificationClaims": pa.Column(str, required=False, nullable=True),
-        "manufacturedCountry": pa.Column(int, required=False, nullable=True),
+        "combinationPurpose": pa.Column(str, nullable=True, required=False),
+        "certification": pa.Column(bool, nullable=True, required=False),
+        "certificationClaims": pa.Column(str, nullable=True, required=False),
+        "manufacturedCountry": pa.Column(float, coerce=True, nullable=True, required=False),
         "updateDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern)),
     },
     strict="filter",

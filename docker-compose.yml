@@ -1,0 +1,55 @@
+version: "2.1"
+
+services:
+
+  open-3p_frontend:
+    image: e2rj/open3p-ui-frontend:latest
+    container_name: open-3p_frontend
+    restart: always
+
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      # HTTP
+      - "traefik.http.routers.open3p-api.entrypoints=http"
+      - "traefik.http.routers.open3p-api.rule=Host(`open3p.ecosystem2.co.uk`)"
+      - "traefik.http.routers.open3p-api.middlewares=open3p-api_https"
+      - "traefik.http.middlewares.open3p-api_https.redirectscheme.scheme=https"
+      # HTTPS
+      - "traefik.http.routers.open3p-api-https.entrypoints=https"
+      - "traefik.http.routers.open3p-api-https.rule=Host(`open3p.ecosystem2.co.uk`)"
+      - "traefik.http.routers.open3p-api-https.tls=true"
+      - "traefik.http.routers.open3p-api-https.tls.certresolver=cloudflare"
+      - "traefik.http.routers.open3p-api-secure.service=open3p-api-https"
+      - "traefik.http.services.open3p-api-https.loadbalancer.server.port=4173"
+      - "traefik.docker.network=proxy"
+
+  open-3p_microservice:
+    image: e2rj/open3p-api-microservice:latest
+    container_name: open-3p_microservice
+    restart: always
+
+    networks:
+      - proxy
+    labels:
+      - "traefik.enable=true"
+      # HTTP
+      - "traefik.http.routers.open3p-frontend.entrypoints=http"
+      - "traefik.http.routers.open3p-frontend.rule=Host(`open3p.ecosystem2.co.uk`) && PathPrefix(`/api`)"
+      - "traefik.http.routers.open3p-frontend.middlewares=open3p-frontend_https"
+      - "traefik.http.middlewares.open3p-frontend_https.redirectscheme.scheme=https"
+      # HTTPS
+      - "traefik.http.routers.open3p-frontend-https.entrypoints=https"
+      - "traefik.http.routers.open3p-frontend-https.rule=Host(`open3p.ecosystem2.co.uk`) && PathPrefix(`/api`)"
+      - "traefik.http.middlewares.open3p-frontend-pathstrip.stripprefix.prefixes=/api"
+      - "traefik.http.routers.open3p-frontend-https.middlewares=open3p-frontend-pathstrip@docker"
+      - "traefik.http.routers.open3p-frontend-https.tls=true"
+      - "traefik.http.routers.open3p-frontend-https.tls.certresolver=cloudflare"
+      - "traefik.http.routers.open3p-frontend-secure.service=open3p-frontend-https"
+      - "traefik.http.services.open3p-frontend-https.loadbalancer.server.port=5173"
+      - "traefik.docker.network=proxy"
+
+networks:
+  proxy:
+    external: true

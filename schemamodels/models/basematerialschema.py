@@ -37,17 +37,16 @@ schema = pa.DataFrameSchema(
     {
         "identifier": pa.Column(str, checks=pa.Check.str_length(min_value=36, max_value=36)),
         "baseMaterialName": pa.Column(str),
-        "baseMaterialType": pa.Column(pa.String, checks=pa.Check(lambda s: s.isin(controlled_list)), required=False),
-        "materialChemCID": pa.Column(int, required=False),
-        "externalIdentifierKeys": pa.Column(str, required=False),
-        "externalIdentifierValues": pa.Column(int, required=False),
-        "certification": pa.Column(bool, required=False),
-        "certificationClaims": pa.Column(str, required=False),
-        "manufacturedCountry": pa.Column(str, required=False),
-        "updateDate": pa.Column(pa.String, checks=pa.Check.str_matches(iso8601_date_pattern)),
+        "baseMaterialType": pa.Column(str, checks=pa.Check(lambda s: s.isin(controlled_list)), required=False, nullable=True),
+        "materialChemCID": pa.Column(float, coerce=True, nullable=True, required=False),
+        "externalIdentifierKeys": pa.Column(str, required=False, nullable=True),
+        "externalIdentifierValues": pa.Column(int, required=False, nullable=True),
+        "certification": pa.Column(bool, required=False, nullable=True),
+        "certificationClaims": pa.Column(str, required=False, nullable=True),
+        "manufacturedCountry": pa.Column(str, required=False, nullable=True),
+        "updateDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern)),
     },
-    #   strict='filter',
-    #   add_missing_columns=True,
+    strict="filter",
     coerce=True
 )
 

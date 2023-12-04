@@ -32,13 +32,13 @@ def check_uuid(value):
 schema = pa.DataFrameSchema(
     {
         "identifier": pa.Column(str, checks=pa.Check.str_length(min_value=36, max_value=36)),
-        "loadCatalogueName": pa.Column(str, required=False, nullable=True),
-        "description": pa.Column(str, required=False, nullable=True),
-        "externalIdentifier": pa.Column(dict, required=False, nullable=True),
+        "loadCatalogueName": pa.Column(str, nullable=True, required=False),
+        "description": pa.Column(str, nullable=True, required=False),
+        "externalIdentifier": pa.Column(dict, nullable=True, required=False),
         "loadIdentifiers": pa.Column(str),
         "packagingItems": pa.Column(str),
         "quantityInLoad": pa.Column(int),
-        "level": pa.Column(str, checks=pa.Check(lambda s: s.isin(level_controlled_list)), required=False, nullable=True),
+        "level": pa.Column(str, checks=pa.Check(lambda s: s.isin(level_controlled_list)), nullable=True, required=False),
         "updateDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern)),
     },
     strict="filter",

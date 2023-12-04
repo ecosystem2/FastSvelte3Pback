@@ -32,13 +32,13 @@ def check_uuid(value):
 schema = pa.DataFrameSchema(
     {
         "identifier": pa.Column(str, checks=pa.Check.str_length(min_value=36, max_value=36)),
-        "loadName": pa.Column(str, required=False, nullable=True),
-        "description": pa.Column(str, required=False, nullable=True),
-        "externalIdentifiers": pa.Column(dict, required=False, nullable=True),
+        "loadName": pa.Column(str, nullable=True, required=False),
+        "description": pa.Column(str, nullable=True, required=False),
+        "externalIdentifiers": pa.Column(dict, nullable=True, required=False),
         "loadIdentifiers": pa.Column(str),
         "startDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern)),
         "endDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern)),
-        "destinationAddressName": pa.Column(str, required=False, nullable=True),
+        "destinationAddressName": pa.Column(str, nullable=True, required=False),
         "destinationAddressStreet": pa.Column(str),
         "destinationAddressCountry": pa.Column(str),
         "destinationPostalCode": pa.Column(str),

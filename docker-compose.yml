@@ -22,7 +22,7 @@ services:
       - "traefik.http.routers.open3p-api-https.tls=true"
       - "traefik.http.routers.open3p-api-https.tls.certresolver=cloudflare"
       - "traefik.http.routers.open3p-api-secure.service=open3p-api-https"
-      - "traefik.http.services.open3p-api-https.loadbalancer.server.port=4173"
+      - "traefik.http.services.open3p-api-https.loadbalancer.server.port=5173"
       - "traefik.docker.network=proxy"
 
   open-3p_microservice:

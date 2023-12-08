@@ -105,8 +105,9 @@ async def upload_materials(file: UploadFile = File(...)):
     except Exception as e:
         return {"message": f"Error processing file: {str(e)}"}
 
-
 # Components
+
+
 @app.post("/components/")
 async def upload_components(file: UploadFile = File(...)):
     try:

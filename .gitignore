@@ -5,3 +5,5 @@ validation_errors.log
 __pycache__/
 .pyc 
 
+venv
+

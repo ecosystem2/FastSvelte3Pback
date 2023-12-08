@@ -270,8 +270,7 @@ async def upload_load(file: UploadFile = File(...)):
 
 
 origins = [
-    "http://localhost:5173",
-    "localhost:5173"
+    "open3p.ecosystem2.co.uk"
 ]
 
 app.add_middleware(

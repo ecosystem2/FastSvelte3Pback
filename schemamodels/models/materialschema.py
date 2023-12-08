@@ -12,7 +12,7 @@ iso8601_date_pattern = r"^\d{4}-\d{2}-\d{2}$"
 controlled_list_df = pd.read_csv(
     './schemamodels/models/controlled_lists/list_of_lists_nov23.csv')
 # Replace 'column_name' with the actual column name in your CSV
-controlled_list = controlled_list_df['baseMaterialType'].tolist()
+function_controlled_list = controlled_list_df['function'].tolist()
 
 # Custom check function for UUID4 format
 # previous check was pa.Check.str_length(36),
@@ -35,7 +35,7 @@ schema = pa.DataFrameSchema(
         "materialName": pa.Column(str),
         "externalIdentifier": pa.Column(dict, nullable=True, required=False),
         "materialConstituents": pa.Column(str),
-        "combinationPurpose": pa.Column(str, nullable=True, required=False),
+        "combinationPurpose": pa.Column(str, checks=pa.Check(lambda s: s.isin(function_controlled_list)), nullable=True, required=False),
         "certification": pa.Column(bool, nullable=True, required=False),
         "certificationClaims": pa.Column(str, nullable=True, required=False),
         "manufacturedCountry": pa.Column(float, coerce=True, nullable=True, required=False),

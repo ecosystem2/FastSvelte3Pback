@@ -2,14 +2,18 @@
   {
     "identifier": "629D144E-93C5-D32C-AE38-26F2143D0BFB",
     "baseMaterialName": "VIRGIN PET",
-    "baseMaterialType": "bm-material-type-0004",
+    "baseMaterialType": "bm-material-type-0002",
     "materialChemCID": 16212789,
-    "externalIdentifierKeys": "primaryKey",
-    "externalIdentifierValues": 5684897,
+    "externalIdentifiers": {
+      "dbPK": "152314568888"
+    },
     "certification": "True",
-    "certificationClaims": "list",
+    "certificationClaims": [
+      "1",
+      "35"
+    ],
     "manufacturer": "Dsposal - GB-COH-10145252",
-    "manufacturedCountry": "United Arab Emirates (the)",
+    "manufacturedCountry": "4",
     "updateDate": "2023-01-01"
   }
 ]

@@ -1,17 +1,19 @@
-{
-  "identifier": "DCEE1F88-A83B-5BBC-D2D9-6A862B344977",
-  "materialName": "PET",
-  "externalIdentifiers": {
-    "GTIN": "123456789101"
-  },
-  "materialConstituents": [
-    "DCEE1F88-A83B-5BBC-D2D9-6A862B344977"
-  ],
-  "combinationPurpose": null,
-  "certification": true,
-  "certificationClaims": [
-    "1"
-  ],
-  "manufacturedCountry": 826,
-  "updateDate": "01/08/2022"
-}
+[
+  {
+    "identifier": "DCEE1F88-A83B-5BBC-D2D9-6A862B344977",
+    "materialName": "PET",
+    "externalIdentifiers": {
+      "GTIN": "123456789101"
+    },
+    "materialConstituents": [
+      "DCEE1F88-A83B-5BBC-D2D9-6A862B344977"
+    ],
+    "combinationPurpose": null,
+    "certification": true,
+    "certificationClaims": [
+      "1"
+    ],
+    "manufacturedCountry": 826,
+    "updateDate": "2022-08-01"
+  }
+]

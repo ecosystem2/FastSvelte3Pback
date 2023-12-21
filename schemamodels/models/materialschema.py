@@ -1,7 +1,7 @@
 import pandera as pa
 import pandas as pd
 from pandera.typing import Series
-from typing import Optional
+from typing import List, Dict
 import uuid
 import json
 
@@ -13,6 +13,14 @@ controlled_list_df = pd.read_csv(
     './schemamodels/models/controlled_lists/list_of_lists_nov23.csv')
 # Replace 'column_name' with the actual column name in your CSV
 function_controlled_list = controlled_list_df['function'].tolist()
+
+
+# Load country codes
+country_codes_df = pd.read_csv(
+    './schemamodels/models/controlled_lists/countryCodes.csv')
+
+# Replace with the actual column name in your CSV
+country_code_strings = country_codes_df['NumericString_Quoted'].tolist()
 
 # Custom check function for UUID4 format
 # previous check was pa.Check.str_length(36),
@@ -31,15 +39,15 @@ def check_uuid(value):
 # add missing columns - will print a return schema that indicates missing columns - with a value of NaN if no default is declared.
 schema = pa.DataFrameSchema(
     {
-        "identifier": pa.Column(str, checks=pa.Check.str_length(min_value=36, max_value=36)),
+        "identifier": pa.Column(str, checks=pa.Check.str_length(min_value=36, max_value=36, error="entries must be a valid and unique 36 character UUID"), unique=True),
         "materialName": pa.Column(str),
-        "externalIdentifier": pa.Column(dict, nullable=True, required=False),
-        "materialConstituents": pa.Column(str),
-        "combinationPurpose": pa.Column(str, checks=pa.Check(lambda s: s.isin(function_controlled_list)), nullable=True, required=False),
+        "externalIdentifiers": pa.Column(Dict, nullable=True, required=False),
+        "materialConstituents": pa.Column(List),
+        "combinationPurpose": pa.Column(str, checks=pa.Check(lambda s: s.isin(function_controlled_list), error="String values must be from the controlled list."), nullable=True, required=False),
         "certification": pa.Column(bool, nullable=True, required=False),
-        "certificationClaims": pa.Column(str, nullable=True, required=False),
-        "manufacturedCountry": pa.Column(float, coerce=True, nullable=True, required=False),
-        "updateDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern)),
+        "certificationClaims": pa.Column(List, nullable=True, required=False),
+        "manufacturedCountry": pa.Column(str, checks=pa.Check(lambda s: s.isin(country_code_strings), error="Countries must be entered as valid ISO3166 Numeric Strings"), nullable=True, required=False),
+        "updateDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern, error="Date values must be in ISO8601 format: yyyy-mm-dd")),
     },
     strict="filter",
     coerce=True

@@ -1,9 +1,9 @@
 import pandera as pa
 import pandas as pd
 from pandera.typing import Series
-from typing import Optional
-import uuid
+from typing import List, Dict
 import json
+import uuid
 
 # Define a regular expression to match ISO 8601 date format "YYYY-MM-DD"
 iso8601_date_pattern = r"^\d{4}-\d{2}-\d{2}$"
@@ -11,12 +11,25 @@ iso8601_date_pattern = r"^\d{4}-\d{2}-\d{2}$"
 # Load the CSV file as a controlled list
 controlled_list_df = pd.read_csv(
     './schemamodels/models/controlled_lists/list_of_lists_nov23.csv')
+# Replace with the actual column name in your CSV
+controlled_list = controlled_list_df['baseMaterialType'].tolist()
+
+# Load the CSV file as a controlled list
+controlled_list_df = pd.read_csv(
+    './schemamodels/models/controlled_lists/list_of_lists_nov23.csv')
 # Replace 'column_name' with the actual column name in your CSV
 controlled_list = controlled_list_df['baseMaterialType'].tolist()
 
+# Load country codes
+country_codes_df = pd.read_csv(
+    './schemamodels/models/controlled_lists/countryCodes.csv')
+
+# Replace with the actual column name in your CSV
+country_code_strings = country_codes_df['NumericString_Quoted'].tolist()
+
+
 # Custom check function for UUID4 format
 # previous check was pa.Check.str_length(36),
-
 
 def check_uuid(value):
     try:
@@ -35,16 +48,15 @@ def check_unique_identifiers(series):
 # strict='filter' will drop columns not in the schema from the validation process
 schema = pa.DataFrameSchema(
     {
-        "identifier": pa.Column(str, checks=pa.Check.str_length(min_value=36, max_value=36)),
+        "identifier": pa.Column(str, checks=pa.Check.str_length(min_value=36, max_value=36, error="entries must be a valid and unique 36 character UUID"), unique=True),
         "baseMaterialName": pa.Column(str),
-        "baseMaterialType": pa.Column(str, checks=pa.Check(lambda s: s.isin(controlled_list)), nullable=True, required=False),
-        "materialChemCID": pa.Column(float, coerce=True, nullable=True, required=False),
-        "externalIdentifierKeys": pa.Column(str, nullable=True, required=False),
-        "externalIdentifierValues": pa.Column(int, nullable=True, required=False),
+        "baseMaterialType": pa.Column(str, checks=pa.Check(lambda s: s.isin(controlled_list), error="String values must be from the controlled list."), nullable=True, required=False),
+        "materialChemCID": pa.Column(float, nullable=True, required=False),
+        "externalIdentifiers": pa.Column(Dict, nullable=True, required=False),
         "certification": pa.Column(bool, nullable=True, required=False),
-        "certificationClaims": pa.Column(str, nullable=True, required=False),
-        "manufacturedCountry": pa.Column(float, coerce=True, nullable=True, required=False),
-        "updateDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern)),
+        "certificationClaims": pa.Column(List, nullable=True, required=False),
+        "manufacturedCountry": pa.Column(str, checks=pa.Check(lambda s: s.isin(country_code_strings), error="Countries must be entered as valid ISO3166 Numeric Strings"), nullable=True, required=False),
+        "updateDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern, error="Date values must be in ISO8601 format: yyyy-mm-dd")),
     },
     strict="filter",
     coerce=True

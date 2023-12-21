@@ -1,9 +1,10 @@
 from typing import Optional, List
-from fastapi import FastAPI, UploadFile, File
+from fastapi import FastAPI, UploadFile, File, HTTPException
 from fastapi.responses import FileResponse
 from fastapi.staticfiles import StaticFiles
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
+import json
 
 
 # routing of schema validation
@@ -24,7 +25,7 @@ app = FastAPI()
 
 # file routing
 
-
+"""
 async def read_file(file: UploadFile):
     # Determine the file extension
     file_extension = file.filename.split(".")[-1]
@@ -38,6 +39,29 @@ async def read_file(file: UploadFile):
         return pd.read_excel(file.file)
     else:
         raise ValueError("Unsupported file format")
+"""
+
+
+async def read_file(file: UploadFile):
+    # Determine the file extension
+    file_extension = file.filename.split(".")[-1]
+
+    # Read the file based on its extension
+    if file_extension == "csv":
+        return pd.read_csv(file.file)
+    elif file_extension == "json":
+        json_content = json.load(file.file)
+
+        # Check if the JSON content is already an array
+        if isinstance(json_content, list):
+            return pd.read_json(json.dumps(json_content))
+        else:
+            # Wrap the JSON content in an array
+            return pd.read_json(json.dumps([json_content]))
+    elif file_extension == "xlsx":
+        return pd.read_excel(file.file)
+    else:
+        raise HTTPException(status_code=400, detail="Unsupported file format")
 
 # basematerials
 

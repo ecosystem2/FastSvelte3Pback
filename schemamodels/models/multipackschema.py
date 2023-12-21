@@ -1,7 +1,7 @@
 import pandera as pa
 import pandas as pd
 from pandera.typing import Series
-from typing import Optional
+from typing import List, Dict
 import uuid
 import json
 
@@ -31,16 +31,16 @@ def check_uuid(value):
 # add missing columns - will print a return schema that indicates missing columns - with a value of NaN if no default is declared.
 schema = pa.DataFrameSchema(
     {
-        "identifier": pa.Column(str, checks=pa.Check.str_length(min_value=36, max_value=36)),
-        "multipackName": pa.Column(str, nullable=True, required=False),
+        "identifier": pa.Column(str, checks=pa.Check.str_length(min_value=36, max_value=36, error="entries must be a valid and unique 36 character UUID"), unique=True),
+        "name": pa.Column(str, nullable=True, required=False),
         "description": pa.Column(str, nullable=True, required=False),
-        "externalIdentifier": pa.Column(dict, nullable=True, required=False),
-        "multipackConstituentIdentifiers": pa.Column(str),
+        "externalIdentifiers": pa.Column(Dict, nullable=True, required=False),
+        "multipackConstituentsIdentifiers": pa.Column(List),
         "tier": pa.Column(int, nullable=True, required=False),
         "identicalQuantity": pa.Column(int),
-        "updateDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern)),
-        "releaseDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern), nullable=True, required=False),
-        "discontinueDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern), nullable=True, required=False),
+        "updateDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern, error="Date values must be in ISO8601 format: yyyy-mm-dd")),
+        "releaseDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern, error="Date values must be in ISO8601 format: yyyy-mm-dd"), nullable=True, required=False),
+        "discontinueDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern, error="Date values must be in ISO8601 format: yyyy-mm-dd"), nullable=True, required=False),
     },
     strict="filter",
     coerce=True

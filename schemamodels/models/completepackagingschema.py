@@ -1,7 +1,7 @@
 import pandera as pa
 import pandas as pd
 from pandera.typing import Series
-from typing import Optional
+from typing import List, Dict
 import uuid
 import json
 
@@ -31,43 +31,52 @@ def check_uuid(value):
 # import column from pandera as pa.column
 schema = pa.DataFrameSchema(
     {
-        "identifier": pa.Column(str, checks=pa.Check.str_length(min_value=36, max_value=36)),
-        "completePackagingName": pa.Column(str, nullable=True, required=False),
+        "identifier": pa.Column(str, checks=pa.Check.str_length(min_value=36, max_value=36, error="entries must be a valid and unique 36 character UUID"), unique=True),
+        "name": pa.Column(str, nullable=True, required=False),
         "description": pa.Column(str, nullable=True, required=False),
-        "externalIdentifier": pa.Column(dict, nullable=True, required=False),
-        "imageURLs": pa.Column(str, nullable=True, required=False),
-        "completePackagingConstituentsIdentifier": pa.Column(str),
+        "externalIdentifiers": pa.Column(Dict, nullable=True, required=False),
+        "imageURLs": pa.Column(List, nullable=True, required=False),
+        "completePackagingConstituentsIdentifier": pa.Column(List),
         "LOWcodeWOproduct": pa.Column(str, nullable=True, required=False),
         "productType": pa.Column(str, checks=pa.Check(lambda s: s.isin(product_type_controlled_list)), nullable=True, required=False),
-        "componentContactWithProduct": pa.Column(list),
+        "componentContactWithProduct": pa.Column(List),
         "LOWcodeWproduct": pa.Column(str, nullable=True, required=False),
         "onTheGo": pa.Column(bool),
         "householdWaste": pa.Column(bool),
-        "depositReturnSchemes": pa.Column(str, checks=pa.Check(lambda s: s.isin(deposit_return_scheme_controlled_list))),
-        "completePackagingEndOfLifeRoutes": pa.Column(str, nullable=True, required=False),
+        "depositReturnSchemes": pa.Column(List, checks=pa.Check(
+            lambda s: all(
+                (isinstance(val, list) and all(
+                    subval in deposit_return_scheme_controlled_list for subval in val))
+                or
+                (isinstance(val, str) and val in deposit_return_scheme_controlled_list)
+                for val in s
+            ),
+            element_wise=True,
+            error="List values must be from the controlled list."
+        )),
+        "completePackagingEndOfLifeRoutes": pa.Column(List, nullable=True, required=False),
         "recyclability": pa.Column(bool, nullable=True, required=False),
-        "recyclabilityClaims": pa.Column(str, required=False, nullable=True),
+        "recyclabilityClaims": pa.Column(List, required=False, nullable=True),
         "height": pa.Column(float, coerce=True, nullable=True, required=False),
-        "heightDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern), nullable=True, required=False),
+        "heightDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern, error="Date values must be in ISO8601 format: yyyy-mm-dd"), nullable=True, required=False),
         "width": pa.Column(float, coerce=True, nullable=True, required=False),
-        "widthDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern), nullable=True, required=False),
+        "widthDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern, error="Date values must be in ISO8601 format: yyyy-mm-dd"), nullable=True, required=False),
         "depth": pa.Column(float, coerce=True, nullable=True, required=False),
-        "depthDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern), nullable=True, required=False),
+        "depthDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern, error="Date values must be in ISO8601 format: yyyy-mm-dd"), nullable=True, required=False),
         "volume": pa.Column(float, coerce=True, nullable=True, required=False),
-        "volumeDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern), nullable=True, required=False),
+        "volumeDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern, error="Date values must be in ISO8601 format: yyyy-mm-dd"), nullable=True, required=False),
         "weight": pa.Column(int),
         "weightTolerance": pa.Column(int),
         "weightToleranceType": pa.Column(str),
-        "weightDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern), nullable=True, required=False),
+        "weightDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern, error="Date values must be in ISO8601 format: yyyy-mm-dd"), nullable=True, required=False),
         "servingCapacity": pa.Column(float, coerce=True, nullable=True, required=False),
-        "servingCapacityDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern), nullable=True, required=False),
+        "servingCapacityDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern, error="Date values must be in ISO8601 format: yyyy-mm-dd"), nullable=True, required=False),
         "partOfMultipack": pa.Column(bool),
         "certification": pa.Column(bool, nullable=True, required=False),
-        "certificationClaims": pa.Column(str, nullable=True, required=False),
-        "manufacturedCountry": pa.Column(float, coerce=True, nullable=True, required=False),
-        "updateDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern)),
-        "releaseDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern), nullable=True, required=False),
-        "discontinueDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern), nullable=True, required=False),
+        "certificationClaims": pa.Column(List, nullable=True, required=False),
+        "updateDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern, error="Date values must be in ISO8601 format: yyyy-mm-dd")),
+        "releaseDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern, error="Date values must be in ISO8601 format: yyyy-mm-dd"), nullable=True, required=False),
+        "discontinueDate": pa.Column(str, checks=pa.Check.str_matches(iso8601_date_pattern, error="Date values must be in ISO8601 format: yyyy-mm-dd"), nullable=True, required=False),
     },
     strict="filter",
     coerce=True
